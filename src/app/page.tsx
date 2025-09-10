@@ -89,7 +89,7 @@ export default function Home() {
           </div>
 
           {/* Visual card with blue frame */}
-          <div className="card relative overflow-hidden border-brand-blue/30">
+          <div className="card relative overflow-hidden  border-brand-blue/30">
             <Image
               src="/hero-collage.png"
               alt="Customers getting funded"
@@ -128,7 +128,7 @@ export default function Home() {
       </section>
 
       {/* BENEFITS — bluer accents & chips */}
-      <section className="bg-white">
+      <section className="bg-blue-sky">
         <div className="container py-12">
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <h2 className="section-title">Why FundingMole?</h2>
@@ -162,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS — upgraded layout w/ icons and blue panels */}
-      <section className="bg-brand-sky">
+      <section className="bg-brand-blue">
         <div className="container py-12">
           <div className="flex items-start justify-between gap-6 flex-wrap">
             <h2 className="section-title">How It Works</h2>
@@ -244,9 +244,9 @@ export default function Home() {
           </ol>
 
           {/* Trust row */}
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <div className="card p-5 flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-blue/10 text-brand-blue">
+          <div className="mt-8  grid gap-4 md:grid-cols-3">
+            <div className="card p-5  flex items-center gap-3">
+              <div className="grid  h-10 w-10 place-items-center rounded-lg bg-brand-blue text-brand-blue">
                 <Icons.Shield className="h-5 w-5" />
               </div>
               <div className="text-sm">
@@ -275,12 +275,12 @@ export default function Home() {
           </div>
 
           {/* CTA bar */}
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-xl2 border border-brand-blue/30 bg-white p-5">
+          <div className="mt-10  flex flex-wrap items-center justify-between gap-4 rounded-xl2 border border-brand-blue/30 bg-white p-5">
             <div>
               <p className="font-semibold text-brand-navy">Ready to see what you qualify for?</p>
               <p className="text-sm text-brand-muted">Start your application — it’s quick and secure.</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex  gap-3">
               <Link href="/apply" className="btn-primary">Start Application</Link>
               <Link href="/how-it-works" className="btn-outline">Learn More</Link>
             </div>

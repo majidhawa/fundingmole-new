@@ -45,13 +45,13 @@ export default function HowItWorks() {
   return (
     <div className="container py-12 md:py-16">
       {/* Header band with extra blue presence */}
-      <div className="rounded-xl2 border border-brand-border bg-brand-sky p-6">
+      <div className="rounded-xl2 border border-brand-border bg-brand-blue p-6">
         <span className="chip bg-white border-brand-border">
           <span className="inline-block h-2 w-2 rounded-full bg-brand-blue" />
           Simple • Transparent • Fast
         </span>
         <h1 className="mt-3 section-title">Getting Funded Is Easy</h1>
-        <p className="mt-2 text-brand-muted">
+        <p className="mt-2 text-white">
           Follow these four steps. Learn what we look for, what to upload, and what to expect next.
         </p>
 
@@ -73,9 +73,9 @@ export default function HowItWorks() {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr,360px]">
         {/* Steps column */}
-        <div className="grid gap-8">
+        <div className=" grid gap-8">
           {/* Step 1 */}
-          <section className="card p-6 border-l-4 border-l-brand-blue">
+          <section className="card p-6 border-l-4 border-l-brand-blue bg-brand-blue" >
             <div className="flex items-start gap-3">
               <div className="grid h-12 w-12 place-items-center rounded-xl2 bg-brand-blue text-white">
                 <Icons.Credit className="h-6 w-6" />
@@ -129,7 +129,7 @@ export default function HowItWorks() {
 
           {/* Step 2 */}
           <section className="card p-6 border-l-4 border-l-brand-blue">
-            <div className="flex items-start gap-3">
+            <div className="flex  items-start gap-3">
               <div className="grid h-12 w-12 place-items-center rounded-xl2 bg-brand-blue text-white">
                 <Icons.Upload className="h-6 w-6" />
               </div>
@@ -137,8 +137,8 @@ export default function HowItWorks() {
                 <div className="text-xs text-brand-muted">Step 2</div>
                 <h2 className="text-xl font-semibold text-brand-navy">Gather Your Documents</h2>
 
-                <div className="mt-3 grid gap-3 text-sm">
-                  <div className="card p-4">
+                <div className="mt-3  grid gap-3 text-sm">
+                  <div className="  card p-4">
                     <p className="font-medium text-brand-navy">Typical documents</p>
                     <ul className="mt-2 list-disc list-inside space-y-1 text-brand-muted">
                       <li>Full credit report PDF (from step 1)</li>
@@ -168,8 +168,8 @@ export default function HowItWorks() {
           </section>
 
           {/* Step 3 */}
-          <section className="card p-6 border-l-4 border-l-brand-blue">
-            <div className="flex items-start gap-3">
+          <section className="card  p-6 border-l-4 border-l-brand-blue">
+            <div className="flex  items-start gap-3">
               <div className="grid h-12 w-12 place-items-center rounded-xl2 bg-brand-blue text-white">
                 <Icons.Shield className="h-6 w-6" />
               </div>
@@ -229,9 +229,9 @@ export default function HowItWorks() {
           </section>
 
           {/* Safety + disclaimer (blue panel) */}
-          <section className="rounded-xl2 border border-brand-border bg-brand-sky p-6">
+          <section className="rounded-xl2 border border-brand-border bg-brand-blue p-6">
             <h2 className="text-lg font-semibold text-brand-navy">Credit Disclaimer & Safety</h2>
-            <p className="mt-2 text-brand-muted">
+            <p className="mt-2 text-white">
               Minimum <b>600 FICO</b> is typically required. If you’re under 600, our Credit Assistance team can help
               you rebuild before applying again. Never send website logins — only the PDF report.
             </p>
