@@ -8,7 +8,6 @@ export default function Footer() {
   const nav = [
     { label: "About", href: "/about" },
     { label: "How It Works", href: "/how-it-works" },
-    { label: "Services", href: "/services" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
     { label: "Apply Now", href: "/apply" },
