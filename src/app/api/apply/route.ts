@@ -1,45 +1,54 @@
 import type { NextRequest } from "next/server";
 import nodemailer from "nodemailer";
-import type Mail from "nodemailer/lib/mailer";
 
-export const runtime = "nodejs"; 
+export const runtime = "nodejs"; // not edge
 
-function requireEnv(name: string) {
+// Lazy cache for transporter (per process)
+let cachedTransporter: nodemailer.Transporter | null = null;
+
+function getEnv(name: string): string | undefined {
   const v = process.env[name];
-  if (!v) throw new Error(`Missing required env var: ${name}`);
-  return v;
+  return v && v.length ? v : undefined;
 }
 
-
-const transporter = nodemailer.createTransport({
-  host: requireEnv("SMTP_HOST"),
-  port: Number(requireEnv("SMTP_PORT")),
-  secure: true, 
-  auth: {
-    user: requireEnv("SMTP_USER"),
-    pass: requireEnv("SMTP_PASS"),
-  },
-});
-
-function getErrMessage(err: unknown): string {
-  if (err instanceof Error) return err.message;
-  if (typeof err === "string") return err;
-  try {
-    return JSON.stringify(err);
-  } catch {
-    return "Unknown error";
+function assertEnv(...names: string[]) {
+  const missing = names.filter((n) => !getEnv(n));
+  if (missing.length) {
+    throw new Error(`Email is not configured (missing: ${missing.join(", ")})`);
   }
+}
+
+function getTransporter(): nodemailer.Transporter {
+  if (cachedTransporter) return cachedTransporter;
+
+  // Will throw if any are missing — but only when the API is actually called
+  assertEnv("SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS");
+
+  const host = getEnv("SMTP_HOST")!;
+  const port = Number(getEnv("SMTP_PORT")!);
+  const user = getEnv("SMTP_USER")!;
+  const pass = getEnv("SMTP_PASS")!;
+
+  cachedTransporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465, // true for 465, false for 587
+    auth: { user, pass },
+  });
+
+  return cachedTransporter;
 }
 
 export async function POST(req: NextRequest) {
   try {
+    // Parse multipart form
     const form = await req.formData();
 
     // Fields
     const fullName = (form.get("fullName") || "").toString().trim();
     const email = (form.get("email") || "").toString().trim();
     const phone = (form.get("phone") || "").toString().trim();
-    const type = (form.get("type") || "").toString().trim(); 
+    const type = (form.get("type") || "").toString().trim();
     const amount = (form.get("amount") || "").toString().trim();
     const monthly = (form.get("monthly") || "").toString().trim();
     const fico = (form.get("fico") || "").toString().trim();
@@ -49,13 +58,13 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify({ error: "Missing required fields." }), { status: 400 });
     }
 
-    const fileEntries = form.getAll("files") as File[];
-    const attachments: Mail.Attachment[] = await Promise.all(
-      fileEntries.map(async (file) => {
-        const MAX_FILE_MB = 10;
-        const sizeMB = file.size / (1024 * 1024);
-        if (sizeMB > MAX_FILE_MB) {
-          throw new Error(`A file exceeds ${MAX_FILE_MB}MB: ${file.name}`);
+    // Files (may be multiple)
+    const files = form.getAll("files") as File[];
+    const attachments = await Promise.all(
+      files.map(async (file) => {
+        const MAX_MB = 10;
+        if (file.size / (1024 * 1024) > MAX_MB) {
+          throw new Error(`A file exceeds ${MAX_MB}MB: ${file.name}`);
         }
         const buffer = Buffer.from(await file.arrayBuffer());
         return {
@@ -66,9 +75,12 @@ export async function POST(req: NextRequest) {
       })
     );
 
-  
-    const CONTACT_TO = requireEnv("CONTACT_TO");
-    const CONTACT_FROM = requireEnv("CONTACT_FROM");
+    // Email addressing (read lazily)
+    const CONTACT_TO = getEnv("CONTACT_TO") || getEnv("SMTP_USER");   // fallback to user
+    const CONTACT_FROM = getEnv("CONTACT_FROM") || getEnv("SMTP_USER"); // Gmail requires from=user
+    if (!CONTACT_TO || !CONTACT_FROM) {
+      throw new Error("Email is not configured (missing CONTACT_TO/CONTACT_FROM).");
+    }
 
     const subject = `New Application — ${fullName} (${type})`;
     const text = `
@@ -84,7 +96,7 @@ Monthly Revenue/Income: ${monthly}
 FICO Range: ${fico}
 
 Notes:
-${notes || "(none)"}    
+${notes || "(none)"}
     `.trim();
 
     const html = `
@@ -109,6 +121,8 @@ ${notes || "(none)"}
       </div>
     `;
 
+    // Send email (transporter created on demand)
+    const transporter = getTransporter();
     await transporter.sendMail({
       from: CONTACT_FROM,
       to: CONTACT_TO,
@@ -120,9 +134,10 @@ ${notes || "(none)"}
     });
 
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
-  } catch (err: unknown) {
-  const msg = err instanceof Error ? err.message : typeof err === "string" ? err : "Unknown error";
-  console.error("[/api/apply] Error:", msg);
-  return new Response(JSON.stringify({ error: String(msg) || "Email send failed." }), { status: 500 });
-}
+  } catch (err) {
+    const msg =
+      err instanceof Error ? err.message : typeof err === "string" ? err : "Email send failed.";
+    console.error("[/api/apply] Error:", err);
+    return new Response(JSON.stringify({ error: msg }), { status: 500 });
+  }
 }
