@@ -30,7 +30,9 @@ export default function Nav() {
             className="h-9 w-auto"
             priority
           />
-          <span className="sr-only">FundingMole</span>
+          <span className="text-lg font-bold tracking-tight text-white">
+            FundingMole
+          </span>
         </Link>
 
         {/* Desktop nav */}

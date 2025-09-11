@@ -40,9 +40,8 @@ const benefits = [
 export default function Home() {
   return (
     <>
-      {/* HERO — stronger blue presence with sky band + subtle waves */}
+      {/* HERO — bold SoFi-blue presence */}
       <section className="relative bg-brand-sky">
-        {/* Decorative wave */}
         <div
           aria-hidden
           className="absolute inset-x-0 -top-24 h-40"
@@ -64,7 +63,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-4 text-lg text-brand-muted">
-              Get funded today with options for both personal and business loans — starting at{" "}
+              Real people. Clear steps. No upfront fees. Get options for personal and business loans — starting at{" "}
               <b className="text-brand-navy">600 FICO</b>.
             </p>
 
@@ -89,7 +88,7 @@ export default function Home() {
           </div>
 
           {/* Visual card with blue frame */}
-          <div className="card relative overflow-hidden  border-brand-blue/30">
+          <div className="card relative overflow-hidden border-brand-blue/30">
             <Image
               src="/hero-collage.png"
               alt="Customers getting funded"
@@ -127,8 +126,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BENEFITS — bluer accents & chips */}
-      <section className="bg-blue-sky">
+      {/* WHY FUNDINGMOLE — benefits */}
+      <section className="bg-white">
         <div className="container py-12">
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <h2 className="section-title">Why FundingMole?</h2>
@@ -161,92 +160,83 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS — upgraded layout w/ icons and blue panels */}
-      <section className="bg-brand-blue">
+      {/* WHAT WE OFFER — puts FundingMole services front & center */}
+      <section className="bg-brand-sky">
         <div className="container py-12">
           <div className="flex items-start justify-between gap-6 flex-wrap">
-            <h2 className="section-title">How It Works</h2>
-            <div className="max-w-xl text-sm text-brand-navy/70">
-              A simple path: check your credit (soft pull), upload your docs securely, apply, and get funded quickly.
+            <h2 className="section-title">What We Offer</h2>
+            <p className="max-w-xl text-brand-muted">
+              Whether you need capital to launch, expand, or consolidate—our nationwide lender network helps match you
+              to the right option with clarity at every step.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            {/* Business Funding */}
+            <div className="card p-6 border-brand-blue/30">
+              <p className="text-sm font-semibold text-brand-navy/80">Business Funding</p>
+              <h3 className="mt-1 text-xl font-bold text-brand-navy">Grow with flexible capital</h3>
+              <ul className="mt-3 grid gap-2 text-sm text-brand-muted">
+                <li>• MCA’s</li>
+                <li>• SBA Loans</li>
+                <li>• Business Loans</li>
+                <li>• Lines of Credit</li>
+                <li>• Business Credit Cards</li>
+                <li>• Equipment Financing</li>
+                <li>• Merchant Accounts</li>
+              </ul>
+              <p className="mt-3 text-sm text-brand-navy">
+                <b>Requirements:</b> EIN, 3+ months in business bank statements, 600+ FICO.
+              </p>
+              <div className="mt-4 flex gap-3">
+                <Link href="/apply" className="btn-primary">Apply for Business Funding</Link>
+                <Link href="/how-it-works" className="btn-outline">See Process</Link>
+              </div>
+            </div>
+
+            {/* Personal Funding */}
+            <div className="card p-6 border-brand-blue/30">
+              <p className="text-sm font-semibold text-brand-navy/80">Personal Funding</p>
+              <h3 className="mt-1 text-xl font-bold text-brand-navy">Cover life and big moves</h3>
+              <ul className="mt-3 grid gap-2 text-sm text-brand-muted">
+                <li>• Personal Loans</li>
+                <li>• Credit Cards</li>
+                <li>• Auto Loans</li>
+                <li>• Boat Loans</li>
+                <li>• Home Loans</li>
+              </ul>
+
+              <div className="mt-4 space-y-2 text-sm">
+                <p className="text-brand-navy font-medium">Financial Plans</p>
+                <p className="text-brand-muted">
+                  Not where you want to be? We’ll create a personalized plan for you or your business.
+                </p>
+                <p className="text-brand-navy">
+                  <b>Consultation:</b> $250 — a plan to go from zero to 60 in 90 days.
+                </p>
+              </div>
+
+              <div className="mt-4 space-y-2 text-sm">
+                <p className="text-brand-navy font-medium">Business Builder Packages</p>
+                <p className="text-brand-muted">
+                  <b>1)</b> EIN only + step-by-step registration guide: <b>$250</b>
+                </p>
+                <p className="text-brand-muted">
+                  <b>2)</b> We do it all — EIN, registration, and business website: <b>$1,500</b>
+                </p>
+              </div>
+
+              <div className="mt-4 flex gap-3">
+                <Link href="/apply" className="btn-primary">Apply for Personal Funding</Link>
+                <Link href="/contact" className="btn-outline">Contact us</Link>
+              </div>
             </div>
           </div>
 
-          <ol className="mt-8 grid gap-6 lg:grid-cols-3">
-            {/* Step 1 */}
-            <li className="card overflow-hidden border-brand-blue/30">
-              <div className="bg-white p-5">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl2 bg-brand-blue text-white">
-                    <Icons.Credit className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-brand-muted">Step 1</p>
-                    <h3 className="font-semibold text-brand-navy">Pre-Qualification (soft pull)</h3>
-                  </div>
-                </div>
-                <p className="mt-3 text-sm text-brand-muted">
-                  View your full 3-bureau report & save the PDF. No hard inquiry for pre-qualification.
-                </p>
-              </div>
-              <div className="border-t border-brand-border bg-brand-sky p-4">
-                <a
-                  className="btn-outline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://member.myscoreiq.com/get-fico-max.aspx?offercode=432139TL"
-                >
-                  Check Your FICO
-                </a>
-              </div>
-            </li>
-
-            {/* Step 2 */}
-            <li className="card overflow-hidden border-brand-blue/30">
-              <div className="bg-white p-5">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl2 bg-brand-blue text-white">
-                    <Icons.Upload className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-brand-muted">Step 2</p>
-                    <h3 className="font-semibold text-brand-navy">Upload Documents (secure)</h3>
-                  </div>
-                </div>
-                <p className="mt-3 text-sm text-brand-muted">
-                  PDF credit report, ID, and recent bank statements help us match you to the best options.
-                </p>
-              </div>
-              <div className="border-t border-brand-border bg-brand-sky p-4">
-                <Link href="/apply" className="btn-primary">Upload on Application</Link>
-              </div>
-            </li>
-
-            {/* Step 3 */}
-            <li className="card overflow-hidden border-brand-blue/30">
-              <div className="bg-white p-5">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl2 bg-brand-blue text-white">
-                    <Icons.Rocket className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-brand-muted">Step 3</p>
-                    <h3 className="font-semibold text-brand-navy">Get Funded (24–72 hrs)</h3>
-                  </div>
-                </div>
-                <p className="mt-3 text-sm text-brand-muted">
-                  Once approved and finalized, funds can land quickly. We keep it transparent—no upfront fees.
-                </p>
-              </div>
-              <div className="border-t border-brand-border bg-brand-sky p-4">
-                <Link href="/how-it-works" className="btn-ghost">See full process →</Link>
-              </div>
-            </li>
-          </ol>
-
-          {/* Trust row */}
-          <div className="mt-8  grid gap-4 md:grid-cols-3">
-            <div className="card p-5  flex items-center gap-3">
-              <div className="grid  h-10 w-10 place-items-center rounded-lg bg-brand-blue text-brand-blue">
+          {/* Compact reassurance row */}
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="card p-5 flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-blue/10 text-brand-blue">
                 <Icons.Shield className="h-5 w-5" />
               </div>
               <div className="text-sm">
@@ -273,14 +263,18 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* CTA bar */}
-          <div className="mt-10  flex flex-wrap items-center justify-between gap-4 rounded-xl2 border border-brand-blue/30 bg-white p-5">
+      {/* CTA bar */}
+      <section className="bg-brand-blue/5">
+        <div className="container py-10">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl2 border border-brand-blue/30 bg-white p-5">
             <div>
               <p className="font-semibold text-brand-navy">Ready to see what you qualify for?</p>
               <p className="text-sm text-brand-muted">Start your application — it’s quick and secure.</p>
             </div>
-            <div className="flex  gap-3">
+            <div className="flex gap-3">
               <Link href="/apply" className="btn-primary">Start Application</Link>
               <Link href="/how-it-works" className="btn-outline">Learn More</Link>
             </div>
