@@ -90,10 +90,10 @@ export default function Home() {
           {/* Visual card with blue frame */}
           <div className="card relative overflow-hidden border-brand-blue/30">
             <Image
-              src="/hero-collage.png"
+              src="/hero-image.jpg"
               alt="Customers getting funded"
-              width={1200}
-              height={900}
+              width={900}
+              height={500}
               className="w-full h-auto object-cover"
               priority
             />
@@ -175,7 +175,7 @@ export default function Home() {
             {/* Business Funding */}
             <div className="card p-6 border-brand-blue/30">
               <p className="text-sm font-semibold text-brand-navy/80">Business Funding</p>
-              <h3 className="mt-1 text-xl font-bold text-brand-navy">Grow with flexible capital</h3>
+              <h3 className="mt-1 text-xl font-bold text-brand-navy">Fast flexible work capital</h3>
               <ul className="mt-3 grid gap-2 text-sm text-brand-muted">
                 <li>• MCA’s</li>
                 <li>• SBA Loans</li>
@@ -197,7 +197,7 @@ export default function Home() {
             {/* Personal Funding */}
             <div className="card p-6 border-brand-blue/30">
               <p className="text-sm font-semibold text-brand-navy/80">Personal Funding</p>
-              <h3 className="mt-1 text-xl font-bold text-brand-navy">Cover life and big moves</h3>
+              <h3 className="mt-1 text-xl font-bold text-brand-navy">For all your financial needs</h3>
               <ul className="mt-3 grid gap-2 text-sm text-brand-muted">
                 <li>• Personal Loans</li>
                 <li>• Credit Cards</li>

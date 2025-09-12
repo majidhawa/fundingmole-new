@@ -12,7 +12,7 @@ type QAItem = { q: string; a: React.ReactNode; icon?: React.ElementType };
 
 function QA({ q, a, icon: Icon }: QAItem) {
   return (
-    <details className="group overflow-hidden rounded-xl2 border border-brand-border bg-brand-blue hover:bg-brand-sky/60 transition">
+    <details className="group overflow-hidden rounded-xl2 border border-brand-border bg-brand-blue/10 hover:bg-brand-sky/60 transition">
       <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-4">
         <span className="inline-grid h-8 w-8 place-items-center rounded-lg bg-brand-blue/10 text-brand-blue">
           {Icon ? (
