@@ -40,7 +40,7 @@ const benefits = [
 export default function Home() {
   return (
     <>
-      {/* HERO — bold SoFi-blue presence */}
+      {/* HERO — balanced spacing & capped image */}
       <section className="relative bg-brand-sky">
         <div
           aria-hidden
@@ -50,22 +50,24 @@ export default function Home() {
               "radial-gradient(50rem 12rem at 10% 0%, rgba(0,166,255,0.25) 0%, rgba(0,166,255,0) 60%), radial-gradient(40rem 10rem at 90% 10%, rgba(0,166,255,0.20) 0%, rgba(0,166,255,0) 60%)",
           }}
         />
-        <div className="container relative grid gap-10 py-16 md:grid-cols-2 md:py-20">
+        <div className="container relative grid gap-12 md:grid-cols-[1.05fr,0.95fr] md:items-center py-16 md:py-20">
           {/* Copy */}
-          <div>
-            <span className="chip bg-white border-brand-border">
+          <div className="max-w-xl">
+            <div className="chip bg-white border-brand-border">
               <span className="inline-block h-2 w-2 rounded-full bg-brand-blue" />
               FundingMole • Nationwide lender network
-            </span>
+            </div>
 
-            <h1 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
-              Fast, Flexible Business & Personal Funding — Without the Hassle
-            </h1>
+            <div className="mt-4 space-y-4 leading-relaxed">
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy">
+                Fast, Flexible Business & Personal Funding — Without the Hassle
+              </h1>
 
-            <p className="mt-4 text-lg text-brand-muted">
-              Real people. Clear steps. No upfront fees. Get options for personal and business loans — starting at{" "}
-              <b className="text-brand-navy">600 FICO</b>.
-            </p>
+              <p className="text-lg text-brand-muted">
+                Real people. Clear steps. No upfront fees. Get options for personal and business loans — starting at{" "}
+                <b className="text-brand-navy">600 FICO</b>.
+              </p>
+            </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/how-it-works" className="btn-primary">Learn How It Works</Link>
@@ -87,15 +89,15 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Visual card with blue frame */}
+          {/* Visual card with controlled height */}
           <div className="card relative overflow-hidden border-brand-blue/30">
             <Image
               src="/hero-image.jpg"
               alt="Customers getting funded"
               width={900}
               height={500}
-              className="w-full h-auto object-cover"
               priority
+              className="w-full h-auto max-h-[420px] md:max-h-[460px] object-cover"
             />
             <span className="absolute inset-x-0 top-0 h-1 bg-brand-blue" />
           </div>
@@ -160,7 +162,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHAT WE OFFER — puts FundingMole services front & center */}
+      {/* WHAT WE OFFER */}
       <section className="bg-brand-sky">
         <div className="container py-12">
           <div className="flex items-start justify-between gap-6 flex-wrap">
